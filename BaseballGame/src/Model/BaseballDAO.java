@@ -14,8 +14,8 @@ public class BaseballDAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			String url="jdbc:oracle:thin:@project-db-campus.smhrd.com:1524:xe";
-			String user="hr";		
-			String password="hr"; 
+			String user="campus_23K_AI17_p1_2";		
+			String password="smhrd2"; 
 			conn = DriverManager.getConnection(url,user,password);
 			if(conn!=null) {
 				System.out.println("DB연결 성공");
