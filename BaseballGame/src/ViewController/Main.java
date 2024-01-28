@@ -30,6 +30,7 @@ public class Main {
 				//로그인 됬다고 가정
 				bdto.setId("로그인에서받아옴");
 				String[] entry=beforeGame(bdto);
+				playGame(entry, bdto.getClub(), true);
 			}else if(choice==2) {
 				//회원가입
 			}else if (choice==3) {
