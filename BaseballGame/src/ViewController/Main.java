@@ -92,7 +92,7 @@ public class Main {
 					} else if (choice == 3) {
 						// 회원탈퇴
 						System.out.println("정말로 탈퇴하시겠습니까? [1]예 [2]아니오");
-						int yes = sc.nextInt();
+						int yes = input_I();
 						if (yes == 1) {
 							BaseballDAO bdao = new BaseballDAO();
 							int cnt = bdao.delete(id);
