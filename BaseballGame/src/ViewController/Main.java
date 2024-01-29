@@ -42,36 +42,60 @@ public class Main {
 					continue;
 				}
 				//로그인성공
-				String masterId = "test1";
-				if(result.getId().equals(masterId)) {
-					System.out.println("[1]게임시작 [2]내기록 [3]회원확인 [4]로그아웃");
-				}else {
-					System.out.println("[1]게임시작 [2]내기록 [3]회원탈퇴 [4]로그아웃");
-				}
-				choice=input_I();
-				if(choice==1) {
-					String[] entry=beforeGame(bdto);
-					playGame(entry, bdto.getClub(), true);	
-				}else if(choice==2) {
-					//내기록
-					//baseballDTO사용
-				}else if(choice==3 && result.getId().equals(masterId)) {
-					// 마스터 아이디로 회원을 확인할 때
-					BaseballDAO bdao = new BaseballDAO();
-					ArrayList<BaseballDTO> list = bdao.history(result.getId());
-					System.out.println("아이디/점수");
-					for (int i = 0; i < list.size(); i++) {
-						System.out.println(list.get(i).getId() + "/t" + list.get(i).getScore());
+				while(true) {
+					String masterId = "test1";
+					if(result.getId().equals(masterId)) {
+						System.out.println("[1]게임시작 [2]내기록 [3]회원확인 [4]로그아웃");
+					}else {
+						System.out.println("[1]게임시작 [2]내기록 [3]회원탈퇴 [4]로그아웃");
 					}
-				}else if(choice==3) {
-					//회원탈퇴
-					//baseball tbable에서 정보 모두 삭제후 (FK)
-					//USER_INFO table에서 정보 삭제(PK)
-				}else if(choice==4) {
-					System.out.println("로그아웃");
-					continue;
-				}else {
-					System.out.println("1~4를 입력해주세요");
+					choice=input_I();
+					if(choice==1) {
+						String[] entry=beforeGame(bdto);
+						playGame(entry, bdto.getClub(), true);	
+					}else if(choice==2) {
+						//내기록
+						//baseballDTO사용
+						BaseballDAO bdao = new BaseballDAO();
+					    ArrayList<BaseballDTO> list = bdao.rank(result);
+					    if(list.size() == 0) {
+					    	System.out.println("기록이 없습니다. 게임을 플레이해주세요.");
+					    }else {
+					    	 for(int i = 0; i < list.size(); i++) {
+							    	System.out.println("구단명: " + list.get(i).getClub() + " / 점수: "+ list.get(i).getScore()+ "점");
+					    }
+					    }
+						
+					}else if(choice==3 && result.getId().equals(masterId)) {
+						// 마스터 아이디로 회원을 확인할 때
+						BaseballDAO bdao = new BaseballDAO();
+						ArrayList<BaseballDTO> list = bdao.history(result.getId());
+						System.out.println("아이디/점수");
+						for (int i = 0; i < list.size(); i++) {
+							System.out.println(list.get(i).getId() + "/t" + list.get(i).getScore());
+						}
+					}else if(choice==3) {
+						//회원탈퇴
+						//baseball tbable에서 정보 모두 삭제후 (FK)
+						//USER_INFO table에서 정보 삭제(PK)
+						
+						System.out.println("정말로 탈퇴하시겠습니까? [1]예 [2]아니오");
+						int yes = sc.nextInt();
+						if(yes == 1) {
+							BaseballDAO bdao = new BaseballDAO();
+							int cnt = bdao.delete(id);
+							cnt = 1;
+								System.out.println("회원삭제 성공!");
+						}
+						else {
+							System.out.println("회원탈퇴 실패...");
+						}
+					}else if(choice==4) {
+						System.out.println("로그아웃");
+						break;
+					}else {
+						System.out.println("1~4를 입력해주세요");
+					}
 				}
 			}else if(choice==2) {
 				//회원가입

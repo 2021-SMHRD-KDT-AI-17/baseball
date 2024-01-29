@@ -50,6 +50,96 @@ public class BaseballDAO {
 	}
 
 	// =====연결해제=====
+	public int delete(String deleteId) {
+		int cnt = 0;
+
+		try {
+			getConn();
+
+			String sql = "DELETE FROM BASEBALL WHERE ID=?";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, deleteId);
+			
+			psmt.executeUpdate();
+			sql = "DELETE FROM USER_INFO WHERE ID=?";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, deleteId);
+			
+			cnt = psmt.executeUpdate();
+			
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try { 
+
+				if (rs != null) {
+					rs.close();
+				}
+				if (psmt != null) {
+					psmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			System.out.println("DB연결종료!");
+		}
+		return cnt;
+
+	}
+	//////// 회원 탈퇴
+	public ArrayList<BaseballDTO> rank(UserDTO udto) {
+		ArrayList<BaseballDTO> list = null;
+		
+		// 데이터베이스에 조회된 정보를 저장할 임시 객체
+		
+		try {
+			getConn();
+		
+			// 점수 상위 10명의 순위, 아이디, 점수를 출력
+			// 단, 내림차순 정렬
+			// 사용자의 가장 높은 점수만을 가지고 랭킹을 매길 것.
+		
+			String sql = "select club, score from baseball where rownum <= 5 and id = ? Order By indate DESC ";
+		    String Id = udto.getId();
+		    
+		
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, Id);
+			
+			
+			rs = psmt.executeQuery();
+			list = new ArrayList<BaseballDTO>();
+			
+			while(rs.next()) {
+				
+				BaseballDTO dto = new BaseballDTO();
+				dto.setClub(rs.getString(1));
+				dto.setScore(rs.getInt(2));
+				
+				list.add(dto);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		
+		return list;
+		// -> 이 부분은 null 이 되면 안돼
+	}
+	/////// 내 기록 정보 조회
+	
+	
 	public int save(BaseballDTO dto) {
 		int cnt = 0;
 		try {
