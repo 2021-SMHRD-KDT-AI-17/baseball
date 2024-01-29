@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class BaseballDTO {
 	private String id,club,indate;
-	private long score;
+	private int score;
 	
 	public String getId() {
 		return id;
@@ -24,10 +24,10 @@ public class BaseballDTO {
 	public void setIndate(String indate) {
 		this.indate = indate;
 	}
-	public long getScore() {
+	public int getScore() {
 		return score;
 	}
-	public void setScore(long score) {
+	public void setScore(int score) {
 		this.score = score;
 	}
 	public ArrayList<BaseballDTO> rank() {

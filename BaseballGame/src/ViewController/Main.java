@@ -34,11 +34,11 @@ public class Main {
 				System.out.print("비밀번호 입력 : ");
 				String pw = sc.next();
 
-				UserDTO dto = new UserDTO();
-				dto.setId(id);
-				dto.setPw(pw);
+				UserDTO udto = new UserDTO();
+				udto.setId(id);
+				udto.setPw(pw);
 
-				UserDTO result = udao.login(dto);
+				UserDTO result = udao.login(udto);
 				if (result == null) {
 					System.out.println("로그인 실패");
 					continue;
@@ -54,11 +54,15 @@ public class Main {
 					}
 					choice = input_I();
 					if (choice == 1) {
+						//게임시작
 						String[] entry = beforeGame(bdto, isMaster);
-						playGame(entry, bdto.getClub(), isMaster);
+						int score=playGame(entry, bdto.getClub(), isMaster);
+						bdto.setScore(score);
+						BaseballDAO bdao = new BaseballDAO();
+						int cnt=bdao.save(bdto);
+						if(cnt>0)System.out.println("기록 저장 성공!!!");
 					} else if (choice == 2) {
 						// 내기록
-						// baseballDTO사용
 						BaseballDAO bdao = new BaseballDAO();
 						ArrayList<BaseballDTO> list = bdao.rank(result);
 						if (list.size() == 0) {
@@ -242,11 +246,12 @@ public class Main {
 		return userEntry;
 	}
 
-	public static void playGame(String[] entry, String club, boolean isMaster) {
+	public static int playGame(String[] entry, String club, boolean isMaster) {
+		int score = 0;
+		byte out=0,ball=0,hit=0,homerun=0;
 		PrintOption po = PrintOption.getPO();
 		byte inning = 1;
 		int input_I;
-		int score = 0;
 		byte[] num = new byte[3];
 		Random rd = new Random();
 		while (inning < 10) {
@@ -312,10 +317,10 @@ public class Main {
 			case 0:
 				switch (rd.nextInt(3)) {
 				case 0:
-					c = "쳤습니다~~~아, 투수손으로 들어갑니다";
+					c = "쳤습니다, 투수 앞 땅볼...1루 태그아웃";
 					break;
 				case 1:
-					c = "1루 직선타, 플라이아웃!";
+					c = "1루 직선타, 뜬 볼!";
 					break;
 				case 2:
 					c = "헛스윙~~! 스트라이크 아웃!";
@@ -323,34 +328,67 @@ public class Main {
 				}
 				po.commentator(c, false);
 				System.out.println("아웃(0점)");
+				out++;
 				break;
 			case 1:
 				switch (rd.nextInt(3)) {
 				case 0:
-					c = "쳤습니다~~~아, 투수손으로 들어갑니다";
+					c = "4볼";
 					break;
 				case 1:
-					c = "1루 직선타, 플라이아웃!";
+					c = "어~~데드볼! 정말 아프겠는데요";
+					break;
+				case 2:
+					c = "볼...판정 시비가 빗발칩니다";
+					break;
+				}
+				po.commentator(c, false);
+				System.out.println("볼("+3 * aceBouns+"점)");
+				score += 5 * aceBouns;
+				ball++;
+				break;
+			case 2:
+				switch (rd.nextInt(3)) {
+				case 0:
+					c = "쳤습니다~~~아, 외야수.. 놓칩니다";
+					break;
+				case 1:
+					c = "3루 직선타, 아슬아슬하게 파울이 아닙니다";
 					break;
 				case 2:
 					c = "헛스윙~~! 스트라이크 아웃!";
 					break;
 				}
 				po.commentator(c, false);
-				System.out.println("볼(3점)");
-				score += 3 * aceBouns;
-				break;
-			case 2:
-				System.out.println("안타(12점)");
-				score += 12 * aceBouns;
+				System.out.println("안타("+16 * aceBouns+"점)");
+				score += 16 * aceBouns;
+				hit++;
 				break;
 			case 3:
-				System.out.println("홈런(45점)");
-				score += 45 * aceBouns;
+				switch (rd.nextInt(3)) {
+				case 0:
+					c = "쭉~~쭉~~~!!!! 담장을 넘습니다!!!!!";
+					break;
+				case 1:
+					c = "어디까지 가나요?? 홈~~~런!!!!!!";
+					break;
+				case 2:
+					c = "3루 담장앞에 떨어집니다~~~~~~~";
+					po.commentator(c, true);
+					c = "너무 멀어요~~ 모든주자가 돌아옵니다";
+					break;
+				}
+				po.commentator(c, false);
+				System.out.println("홈런("+62 * aceBouns+"점)");
+				score += 62 * aceBouns;
+				homerun++;
 				break;
 			}
 			inning++;
 		}
+		System.out.println("구단\t\t점수");
+		System.out.println(club+"\t\t"+score);
+		return score;
 	}
 
 	public static void intro(byte inning, int rdComment, String[] userEntry, String club) {

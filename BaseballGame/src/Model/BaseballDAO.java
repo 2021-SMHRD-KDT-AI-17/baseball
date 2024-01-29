@@ -95,7 +95,7 @@ public class BaseballDAO {
 	}
 	//////// 회원 탈퇴
 	public ArrayList<BaseballDTO> rank(UserDTO udto) {
-		ArrayList<BaseballDTO> list = null;
+		ArrayList<BaseballDTO> list = new ArrayList<BaseballDTO>();
 		
 		// 데이터베이스에 조회된 정보를 저장할 임시 객체
 		
@@ -112,19 +112,14 @@ public class BaseballDAO {
 		
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, Id);
-			
-			
 			rs = psmt.executeQuery();
-			list = new ArrayList<BaseballDTO>();
+			
 			
 			while(rs.next()) {
-				
 				BaseballDTO dto = new BaseballDTO();
 				dto.setClub(rs.getString(1));
 				dto.setScore(rs.getInt(2));
-				
 				list.add(dto);
-				
 			}
 			
 		} catch (SQLException e) {
@@ -132,26 +127,22 @@ public class BaseballDAO {
 		} finally {
 			close();
 		}
-		
-		
 		return list;
-		// -> 이 부분은 null 이 되면 안돼
 	}
 	/////// 내 기록 정보 조회
-	
 	
 	public int save(BaseballDTO dto) {
 		int cnt = 0;
 		try {
 			getConn();
 
-			String sql = "INSERT INTO PLAY(id,culb, score) VALUES(?, ?)";
+			String sql = "INSERT INTO BASEBALL(id, culb, score) VALUES(?, ?, ?)";
 
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setString(1, dto.getId());
 			psmt.setString(2, dto.getClub());
-			psmt.setLong(3, dto.getScore());
+			psmt.setInt(3, dto.getScore());
 
 			cnt = psmt.executeUpdate();
 
@@ -170,9 +161,6 @@ public class BaseballDAO {
 
 		try {
 			getConn();
-
-//			 String sql = "select id, club, 점수 from (select id,club, MAX(score) as 점수 "
-//		               +"from baseball Group By id Order By score DESC) where rownum <= 10";
 			String sql = "select rownum, id, club, score" + " from (" + " select id, club, score" + " from baseball"
 					+ " Order By score DESC)" + " where rownum <= 5";
 
@@ -205,7 +193,7 @@ public class BaseballDAO {
 		try {
 			getConn();
 
-			// 로그인한 사용자의 최근 플레이 5개 가져오는 SQL문
+			// 입력한 사용자의 최근 플레이 5개 가져오는 SQL문
 			String sql = "select * from Baseball where id = ? and rownum <=5";
 
 			psmt = conn.prepareStatement(sql);
