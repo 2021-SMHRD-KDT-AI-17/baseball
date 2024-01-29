@@ -44,15 +44,16 @@ public class Main {
 				//로그인성공
 				while(true) {
 					String masterId = "test1";
-					if(result.getId().equals(masterId)) {
+					boolean isMaster=result.getId().equals(masterId)?true:false;
+					if(isMaster) {
 						System.out.println("[1]게임시작 [2]내기록 [3]회원확인 [4]로그아웃");
 					}else {
 						System.out.println("[1]게임시작 [2]내기록 [3]회원탈퇴 [4]로그아웃");
 					}
 					choice=input_I();
 					if(choice==1) {
-						String[] entry=beforeGame(bdto);
-						playGame(entry, bdto.getClub(), true);	
+						String[] entry=beforeGame(bdto,isMaster);
+						playGame(entry, bdto.getClub(), isMaster);	
 					}else if(choice==2) {
 						//내기록
 						//baseballDTO사용
@@ -66,19 +67,26 @@ public class Main {
 					    }
 					    }
 						
-					}else if(choice==3 && result.getId().equals(masterId)) {
+					}else if(choice==3 && isMaster) {
 						// 마스터 아이디로 회원을 확인할 때
-						BaseballDAO bdao = new BaseballDAO();
-						ArrayList<BaseballDTO> list = bdao.history(result.getId());
-						System.out.println("아이디/점수");
+						UserDAO udao = new UserDAO();
+						ArrayList<UserDTO> list = udao.idList();
+						System.out.print("가입자 아이디 목록");
 						for (int i = 0; i < list.size(); i++) {
-							System.out.println(list.get(i).getId() + "/t" + list.get(i).getScore());
+							System.out.println(list.get(i).getId()+"  ");
+							if(i%5==0)System.out.println();
+						}
+						System.out.println("\n특정 가입자 게임기록 확인[1] 나가기[그외]");
+						choice=input_I();
+						if(choice==1) {
+							BaseballDAO bdao=new BaseballDAO();
+							System.out.print("확인할 가입자 id를 입력해주세요");
+							String userid=sc.next();
+							//bdao.history
+						}else {
 						}
 					}else if(choice==3) {
-						//회원탈퇴
-						//baseball tbable에서 정보 모두 삭제후 (FK)
-						//USER_INFO table에서 정보 삭제(PK)
-						
+						//회원탈퇴				
 						System.out.println("정말로 탈퇴하시겠습니까? [1]예 [2]아니오");
 						int yes = sc.nextInt();
 						if(yes == 1) {
@@ -113,21 +121,21 @@ public class Main {
 				System.out.print("가입할 비밀번호 입력 : ");
 				String joinPw = sc.next();
 
-				UserDTO dto = new UserDTO();
-				dto.setId(joinId);
-				dto.setPw(joinPw);
+				UserDTO udto = new UserDTO();
+				udto.setId(joinId);
+				udto.setPw(joinPw);
 			
-				int cnt = udao.join(dto);
+				int cnt = udao.join(udto);
+				if (cnt > 0) {
+					System.out.println("회원가입 성공!");
+				}else System.out.println("회원가입 실패!");
 			}else if (choice==3) {
 				BaseballDAO bdao = new BaseballDAO();
 				//랭킹보기
-				
 				ArrayList<BaseballDTO>list = bdao.rank();
-				
 				System.out.println("아이디\t구단\t점수");
 				for (int i = 0; i < list.size(); i++) {
 					System.out.println(list.get(i).getId() + "\t" + list.get(i).getClub()+"\t"+list.get(i).getScore());
-
 				}
 			}else if(choice==4) {
 				//게임종료
@@ -139,16 +147,24 @@ public class Main {
 			}
 		}
 	}
-	public static String[] beforeGame(BaseballDTO bdto) {
+	public static String[] beforeGame(BaseballDTO bdto, boolean isMaster) {
 		String input_S;
+		String content;
 		// 구단 이름 설정
 		PrintOption po = PrintOption.getPO();
-		String content = po.specialFont(po.b_WHITE, po.f_BLUE, "구단명을 정해주세요(9자이하)\n>>");
-		while (true) {
-			System.out.print(content);
-			input_S = sc.next();
-			if (input_S.length() < 9)
-				break;
+		if(isMaster) {
+			content = po.specialFont(po.b_WHITE, po.f_BLUE, "관리자계정 확인\n구단명 : 확인드래곤즈");
+			System.out.println(content);
+			input_S="확인드래곤즈";
+		}
+		else {
+			content = po.specialFont(po.b_WHITE, po.f_BLUE, "구단명을 정해주세요(9자이하)\n>>");
+			while (true) {
+				System.out.print(content);
+				input_S = sc.next();
+				if (input_S.length() < 9)
+					break;
+			}
 		}
 		bdto.setClub(input_S);
 		// 선수 선택
@@ -264,23 +280,55 @@ public class Main {
 					if (cpu == player)
 						count++;
 				}
+			String c="";
+			switch(rd.nextInt(3)) {
+			case 0:c="%$^ 와인드업";
+				break;
+			case 1:c="던집니다";
+				break;
+			case 2:c="빠른 직구";
+				break;
+			}
+			po.commentator(c, true);
 			int aceBouns = 1;
 			if (inning == 9)
 				aceBouns = 2;
+			
 			switch (count) {
 			case 0:
+				switch(rd.nextInt(3)) {
+				case 0:c="쳤습니다~~~아, 투수손으로 들어갑니다";
+					break;
+				case 1:c="1루 직선타, 플라이아웃!";
+					break;
+				case 2:c="헛스윙~~! 스트라이크 아웃!";
+					break;
+				}
+				po.commentator(c, false);
+				System.out.println("아웃(0점)");
 				break;
 			case 1:
+				switch(rd.nextInt(3)) {
+				case 0:c="쳤습니다~~~아, 투수손으로 들어갑니다";
+					break;
+				case 1:c="1루 직선타, 플라이아웃!";
+					break;
+				case 2:c="헛스윙~~! 스트라이크 아웃!";
+					break;
+				}
+				po.commentator(c, false);
+				System.out.println("볼(3점)");
 				score += 3 * aceBouns;
 				break;
 			case 2:
+				System.out.println("안타(12점)");
 				score += 12 * aceBouns;
 				break;
 			case 3:
+				System.out.println("홈런(45점)");
 				score += 45 * aceBouns;
 				break;
 			}
-			System.out.println(count);
 			inning++;
 		}
 	}
