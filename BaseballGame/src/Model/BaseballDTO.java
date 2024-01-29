@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class BaseballDTO {
 	private String id,club,indate;
 	private long score;
@@ -27,5 +29,9 @@ public class BaseballDTO {
 	}
 	public void setScore(long score) {
 		this.score = score;
+	}
+	public ArrayList<BaseballDTO> rank() {
+		
+		return null;
 	}
 }

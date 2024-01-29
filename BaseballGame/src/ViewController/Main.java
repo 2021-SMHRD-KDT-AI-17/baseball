@@ -82,7 +82,16 @@ public class Main {
 			
 				int cnt = udao.join(dto);
 			}else if (choice==3) {
+				BaseballDTO bdto = new BaseballDTO();
 				//랭킹보기
+				
+				ArrayList<BaseballDTO>list = bdto.rank();
+				
+				System.out.println("아이디\t구단\t점수");
+				for (int i = 0; i < list.size(); i++) {
+					System.out.println(list.get(i).getId() + "\t" + list.get(i).getClub()+"\t"+list.get(i).getScore());
+
+				}
 			}else if(choice==4) {
 				//게임종료
 				System.out.println("게임종료");

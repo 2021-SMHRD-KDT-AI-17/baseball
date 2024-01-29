@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class BaseballDAO {
 	private Connection conn = null;
@@ -40,4 +41,67 @@ public class BaseballDAO {
 		System.out.println("DB연결종료");
 	}
 	//=====연결해제=====
+	public int save(BaseballDTO dto) {
+	       int cnt = 0;
+	       try {
+	          getConn();
+	          
+	          String sql = "INSERT INTO PLAY(id,culb, score) VALUES(?, ?)";
+	          
+	          psmt = conn.prepareStatement(sql);
+	          
+	          psmt.setString(1, dto.getId());
+	          psmt.setString(2, dto.getClub());
+	          psmt.setLong(3,dto.getScore());
+	          
+	          cnt = psmt.executeUpdate();
+	          
+	          
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }finally {
+	         
+	      }
+	       return cnt;
+	}
+
+
+	 
+	 //========게임기록저장
+public void rank(){
+		
+		ArrayList<BaseballDTO> list = new ArrayList<BaseballDTO>();
+		
+		try {
+			getConn();
+			
+			 String sql = "select id, club , score from (select id, club ,  MAX(score) as score "
+		               +"from play Group By id Order By score DESC) where rownum <= 10";
+			 
+			  psmt = conn.prepareStatement(sql);
+		         
+		         rs = psmt.executeQuery();
+		         
+		         while(rs.next()) {
+		             
+		            BaseballDTO dto = new BaseballDTO();
+		             dto.setId(rs.getString(1));
+		             dto.setClub(rs.getString(2));
+		             dto.setScore(rs.getInt(3));
+		             
+		             list.add(dto);
+		             
+		          }
+		}catch (SQLException e) {
+            e.printStackTrace();
+		}  finally {
+			
+			close();		
+											
+				
+		}
+		}
 }
+
+
+
