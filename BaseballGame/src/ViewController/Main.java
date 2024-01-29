@@ -241,6 +241,7 @@ public class Main {
 
 	public static int playGame(String[] entry, String club, boolean isMaster) {
 		int score = 0;
+		byte s_ball=10,s_hit=50,s_homerun=100;
 		byte out=0,ball=0,hit=0,homerun=0;
 		PrintOption po = PrintOption.getPO();
 		byte inning = 1;
@@ -268,12 +269,12 @@ public class Main {
 				String content;
 				if (inning != 9)
 					content = po.specialFont("default", po.f_GREEN,
-							"누적 획득점수:" + score + "\n자릿수의 값이 중복되지 않는 3자리수를 입력하세요(0제외, 1~9, 위치무관)"
-									+ "\n점수규칙[맞춘수/점수] 아웃[0/0] 볼[1/10] 안타[2/50] 홈런[3/100]\n>>");
+							"누적 획득점수:" + score + "\n자릿수의 값이 중복되지 않는 3자리수를 입력하세요(0제외, 1~9, 위치무관)\n"
+									+ "점수규칙[맞춘수/점수] 아웃[0/0] 볼[1/"+s_ball+"] 안타[2/"+s_hit+"] 홈런[3/"+s_homerun+"]\n>>");
 				else
 					content = po.specialFont("default", po.f_GREEN,
-							"누적 획득점수:" + score + "\n자릿수의 값이 중복되지 않는 3자리수를 입력하세요(0제외, 1~9, 위치무관) "
-									+ "\n점수규칙[맞춘수/점수] 아웃[0/0] 볼[1/20] 안타[2/100] 홈런[3/200] 4번타자 보너스 : 점수2배!!\n>>");
+							"누적 획득점수:" + score + "\n자릿수의 값이 중복되지 않는 3자리수를 입력하세요(0제외, 1~9, 위치무관)\n"
+									+ "점수규칙[맞춘수/점수] 아웃[0/0] 볼[1/"+2*s_ball+"] 안타[2/"+2*s_hit+"] 홈런[3/"+2*s_homerun+"] 4번타자 보너스 : 점수2배!!\n>>");
 				System.out.print(content);
 				input_I = input_I();
 				digits[0] = (byte) (input_I / 100);
@@ -336,8 +337,8 @@ public class Main {
 					break;
 				}
 				po.commentator(c, false);
-				System.out.println("볼("+10 * aceBouns+"점)");
-				score += 10 * aceBouns;
+				System.out.println("볼("+s_ball * aceBouns+"점)");
+				score += s_ball * aceBouns;
 				ball++;
 				break;
 			case 2:
@@ -353,8 +354,8 @@ public class Main {
 					break;
 				}
 				po.commentator(c, false);
-				System.out.println("안타("+50 * aceBouns+"점)");
-				score += 50 * aceBouns;
+				System.out.println("안타("+s_hit * aceBouns+"점)");
+				score += s_hit * aceBouns;
 				hit++;
 				break;
 			case 3:
@@ -372,8 +373,8 @@ public class Main {
 					break;
 				}
 				po.commentator(c, false);
-				System.out.println("홈런("+100 * aceBouns+"점)");
-				score += 100 * aceBouns;
+				System.out.println("홈런("+s_homerun * aceBouns+"점)");
+				score += s_homerun * aceBouns;
 				homerun++;
 				break;
 			}
