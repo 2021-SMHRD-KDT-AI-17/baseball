@@ -148,7 +148,7 @@ public class BaseballDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-
+			close();
 		}
 		return cnt;
 	}

@@ -58,6 +58,7 @@ public class Main {
 						String[] entry = beforeGame(bdto, isMaster);
 						int score=playGame(entry, bdto.getClub(), isMaster);
 						bdto.setScore(score);
+						bdto.setId(result.getId());
 						BaseballDAO bdao = new BaseballDAO();
 						int cnt=bdao.save(bdto);
 						if(cnt>0)System.out.println("기록 저장 성공!!!");
@@ -147,7 +148,7 @@ public class Main {
 				BaseballDAO bdao = new BaseballDAO();
 				// 랭킹보기
 				ArrayList<BaseballDTO> list = bdao.rank();
-				System.out.println("아이디\t구단\t점수");
+				System.out.println("아이디\t\t구단\t\t점수");
 				for (int i = 0; i < list.size(); i++) {
 					System.out.println(
 							list.get(i).getId() + "\t" + list.get(i).getClub() + "\t" + list.get(i).getScore());
@@ -276,11 +277,11 @@ public class Main {
 				if (inning != 9)
 					content = po.specialFont("default", po.f_GREEN,
 							"누적 획득점수:" + score + "\n자릿수의 값이 중복되지 않는 3자리수를 입력하세요(0제외, 1~9, 위치무관) [맞춘수/점수]"
-									+ "\n아웃[0/0] 볼[1/3] 안타[2/12] 홈런[3/45]\n>>");
+									+ "\n아웃[0/0] 볼[1/5] 안타[2/16] 홈런[3/62]\n>>");
 				else
 					content = po.specialFont("default", po.f_GREEN,
 							"누적 획득점수:" + score + "\n자릿수의 값이 중복되지 않는 3자리수를 입력하세요(0제외, 1~9, 위치무관) [맞춘수/점수]"
-									+ "\n아웃[0/0] 볼[1/6] 안타[2/24] 홈런[3/50] 4번타자 보너스 : 점수2배!!\n>>");
+									+ "\n아웃[0/0] 볼[1/5] 안타[2/16] 홈런[3/62] 4번타자 보너스 : 점수2배!!\n>>");
 				System.out.print(content);
 				input_I = input_I();
 				digits[0] = (byte) (input_I / 100);
@@ -386,8 +387,8 @@ public class Main {
 			}
 			inning++;
 		}
-		System.out.println("구단\t\t점수");
-		System.out.println(club+"\t"+score);
+		System.out.println("아웃:"+out+" 볼:"+ball+" 안타:"+hit+" 홈런:"+homerun);
+		System.out.println(club+"\t"+score+"점");
 		return score;
 	}
 
