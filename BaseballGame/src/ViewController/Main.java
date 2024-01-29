@@ -42,7 +42,12 @@ public class Main {
 					continue;
 				}
 				//로그인성공
-				System.out.println("[1]게임시작 [2]내기록 [3]회원탈퇴 [4]로그아웃");
+				String masterId = "test1";
+				if(result.getId().equals(masterId)) {
+					System.out.println("[1]게임시작 [2]내기록 [3]회원확인 [4]로그아웃");
+				}else {
+					System.out.println("[1]게임시작 [2]내기록 [3]회원탈퇴 [4]로그아웃");
+				}
 				choice=input_I();
 				if(choice==1) {
 					String[] entry=beforeGame(bdto);
@@ -50,6 +55,14 @@ public class Main {
 				}else if(choice==2) {
 					//내기록
 					//baseballDTO사용
+				}else if(choice==3 && result.getId().equals(masterId)) {
+					// 마스터 아이디로 회원을 확인할 때
+					BaseballDAO bdao = new BaseballDAO();
+					ArrayList<BaseballDTO> list = bdao.history(result.getId());
+					System.out.println("아이디/점수");
+					for (int i = 0; i < list.size(); i++) {
+						System.out.println(list.get(i).getId() + "/t" + list.get(i).getScore());
+					}
 				}else if(choice==3) {
 					//회원탈퇴
 					//baseball tbable에서 정보 모두 삭제후 (FK)
