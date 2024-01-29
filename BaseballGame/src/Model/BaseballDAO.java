@@ -135,7 +135,7 @@ public class BaseballDAO {
 		try {
 			getConn();
 
-			String sql = "INSERT INTO BASEBALL(id, culb, score) VALUES(?, ?, ?)";
+			String sql = "INSERT INTO BASEBALL(id, club, score) VALUES(?, ?, ?)";
 
 			psmt = conn.prepareStatement(sql);
 
