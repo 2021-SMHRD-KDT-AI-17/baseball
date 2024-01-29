@@ -56,9 +56,9 @@ public class UserDAO {
 
 			rs = psmt.executeQuery();
 
-			result = new UserDTO();
 
 			if (rs.next()) {
+				result = new UserDTO();
 				String getId = rs.getString(1);
 				String getPw = rs.getString(2);
 
