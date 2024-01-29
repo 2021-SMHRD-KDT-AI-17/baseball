@@ -20,6 +20,7 @@ public class Main {
 		} finally {
 			sc.nextLine();
 		}
+		
 	}
 
 	public static void main(String[] args) {
@@ -85,15 +86,6 @@ public class Main {
 							if (i % 5 == 0)
 								System.out.println();
 						}
-						System.out.println("\n특정 가입자 게임기록 확인[1] 나가기[그외]");
-						choice = input_I();
-						if (choice == 1) {
-							BaseballDAO bdao = new BaseballDAO();
-							System.out.print("확인할 가입자 id를 입력해주세요");
-							String userid = sc.next();
-							// bdao.history
-						} else {
-						}
 					} else if (choice == 3) {
 						// 회원탈퇴
 						System.out.println("정말로 탈퇴하시겠습니까? [1]예 [2]아니오");
@@ -148,7 +140,7 @@ public class Main {
 				BaseballDAO bdao = new BaseballDAO();
 				// 랭킹보기
 				ArrayList<BaseballDTO> list = bdao.rank();
-				System.out.println("아이디\t\t구단\t점수");
+				System.out.println("아이디\t구단\t점수");
 				for (int i = 0; i < list.size(); i++) {
 					System.out.println(
 							list.get(i).getId() + "\t" + list.get(i).getClub() + "\t\t" + list.get(i).getScore());
@@ -276,12 +268,12 @@ public class Main {
 				String content;
 				if (inning != 9)
 					content = po.specialFont("default", po.f_GREEN,
-							"누적 획득점수:" + score + "\n자릿수의 값이 중복되지 않는 3자리수를 입력하세요(0제외, 1~9, 위치무관) [맞춘수/점수]"
-									+ "\n아웃[0/0] 볼[1/5] 안타[2/16] 홈런[3/62]\n>>");
+							"누적 획득점수:" + score + "\n자릿수의 값이 중복되지 않는 3자리수를 입력하세요(0제외, 1~9, 위치무관)"
+									+ "\n점수규칙[맞춘수/점수] 아웃[0/0] 볼[1/10] 안타[2/21] 홈런[3/83]\n>>");
 				else
 					content = po.specialFont("default", po.f_GREEN,
-							"누적 획득점수:" + score + "\n자릿수의 값이 중복되지 않는 3자리수를 입력하세요(0제외, 1~9, 위치무관) [맞춘수/점수]"
-									+ "\n아웃[0/0] 볼[1/5] 안타[2/16] 홈런[3/62] 4번타자 보너스 : 점수2배!!\n>>");
+							"누적 획득점수:" + score + "\n자릿수의 값이 중복되지 않는 3자리수를 입력하세요(0제외, 1~9, 위치무관) "
+									+ "\n점수규칙[맞춘수/점수] 아웃[0/0] 볼[1/20] 안타[2/42] 홈런[3/146] 4번타자 보너스 : 점수2배!!\n>>");
 				System.out.print(content);
 				input_I = input_I();
 				digits[0] = (byte) (input_I / 100);
@@ -344,8 +336,8 @@ public class Main {
 					break;
 				}
 				po.commentator(c, false);
-				System.out.println("볼("+3 * aceBouns+"점)");
-				score += 5 * aceBouns;
+				System.out.println("볼("+10 * aceBouns+"점)");
+				score += 10 * aceBouns;
 				ball++;
 				break;
 			case 2:
@@ -357,12 +349,12 @@ public class Main {
 					c = "3루 직선타, 아슬아슬하게 파울이 아닙니다";
 					break;
 				case 2:
-					c = "헛스윙~~! 스트라이크 아웃!";
+					c = "쭉쭉 나갑니다. 중견수 놓칩니다!!!";
 					break;
 				}
 				po.commentator(c, false);
-				System.out.println("안타("+16 * aceBouns+"점)");
-				score += 16 * aceBouns;
+				System.out.println("안타("+21 * aceBouns+"점)");
+				score += 21 * aceBouns;
 				hit++;
 				break;
 			case 3:
@@ -380,8 +372,8 @@ public class Main {
 					break;
 				}
 				po.commentator(c, false);
-				System.out.println("홈런("+62 * aceBouns+"점)");
-				score += 62 * aceBouns;
+				System.out.println("홈런("+83 * aceBouns+"점)");
+				score += 83 * aceBouns;
 				homerun++;
 				break;
 			}

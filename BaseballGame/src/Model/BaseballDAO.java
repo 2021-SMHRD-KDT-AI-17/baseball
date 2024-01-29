@@ -105,7 +105,7 @@ public class BaseballDAO {
 			// 단, 내림차순 정렬
 			// 사용자의 가장 높은 점수만을 가지고 랭킹을 매길 것.
 		
-			String sql = "select club, score from baseball where rownum <= 5 and id = ? Order By indate DESC ";
+			String sql = "select club, score from baseball where rownum <= 20 and id = ? Order By indate DESC ";
 		    String Id = udto.getId();
 		    
 		
@@ -186,38 +186,4 @@ public class BaseballDAO {
 		return list;
 	}
 
-	public ArrayList<BaseballDTO> history(String id) {
-
-		ArrayList<BaseballDTO> list = new ArrayList<BaseballDTO>();
-		try {
-			getConn();
-
-			// 입력한 사용자의 최근 플레이 5개 가져오는 SQL문
-			String sql = "select * from Baseball where id = ? and rownum <=5";
-
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, id);
-
-			rs = psmt.executeQuery();
-
-			while (rs.next()) {
-
-				BaseballDTO dto = new BaseballDTO();
-				dto.setId(rs.getString("Id"));
-				dto.setIndate(rs.getString("indate"));
-				dto.setScore(rs.getInt("score"));
-
-				list.add(dto);
-
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close();
-		}
-
-		return list;
-
-	}
 }
