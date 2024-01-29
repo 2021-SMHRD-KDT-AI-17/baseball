@@ -387,7 +387,7 @@ public class Main {
 			inning++;
 		}
 		System.out.println("구단\t\t점수");
-		System.out.println(club+"\t\t"+score);
+		System.out.println(club+"\t"+score);
 		return score;
 	}
 
