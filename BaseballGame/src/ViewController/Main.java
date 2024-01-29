@@ -269,11 +269,11 @@ public class Main {
 				if (inning != 9)
 					content = po.specialFont("default", po.f_GREEN,
 							"누적 획득점수:" + score + "\n자릿수의 값이 중복되지 않는 3자리수를 입력하세요(0제외, 1~9, 위치무관)"
-									+ "\n점수규칙[맞춘수/점수] 아웃[0/0] 볼[1/10] 안타[2/21] 홈런[3/83]\n>>");
+									+ "\n점수규칙[맞춘수/점수] 아웃[0/0] 볼[1/10] 안타[2/50] 홈런[3/100]\n>>");
 				else
 					content = po.specialFont("default", po.f_GREEN,
 							"누적 획득점수:" + score + "\n자릿수의 값이 중복되지 않는 3자리수를 입력하세요(0제외, 1~9, 위치무관) "
-									+ "\n점수규칙[맞춘수/점수] 아웃[0/0] 볼[1/20] 안타[2/42] 홈런[3/146] 4번타자 보너스 : 점수2배!!\n>>");
+									+ "\n점수규칙[맞춘수/점수] 아웃[0/0] 볼[1/20] 안타[2/100] 홈런[3/200] 4번타자 보너스 : 점수2배!!\n>>");
 				System.out.print(content);
 				input_I = input_I();
 				digits[0] = (byte) (input_I / 100);
@@ -353,8 +353,8 @@ public class Main {
 					break;
 				}
 				po.commentator(c, false);
-				System.out.println("안타("+21 * aceBouns+"점)");
-				score += 21 * aceBouns;
+				System.out.println("안타("+50 * aceBouns+"점)");
+				score += 50 * aceBouns;
 				hit++;
 				break;
 			case 3:
@@ -372,8 +372,8 @@ public class Main {
 					break;
 				}
 				po.commentator(c, false);
-				System.out.println("홈런("+83 * aceBouns+"점)");
-				score += 83 * aceBouns;
+				System.out.println("홈런("+100 * aceBouns+"점)");
+				score += 100 * aceBouns;
 				homerun++;
 				break;
 			}
