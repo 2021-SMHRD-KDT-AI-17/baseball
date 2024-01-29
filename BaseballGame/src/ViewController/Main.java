@@ -27,12 +27,40 @@ public class Main {
 			if(choice==1) {
 				BaseballDTO bdto = new BaseballDTO();
 				//로그인
+				System.out.print("아이디 입력 : ");
+				String id = sc.next();
+				System.out.print("비밀번호 입력 : ");
+				String pw = sc.next();
+
+				UserDTO dto = new UserDTO();
+				dto.setId(id);
+				dto.setPw(pw);
+
+				UserDTO result = udao.login(dto);
 				//로그인 됬다고 가정
-				bdto.setId("로그인에서받아옴");
 				String[] entry=beforeGame(bdto);
 				playGame(entry, bdto.getClub(), true);
 			}else if(choice==2) {
 				//회원가입
+				System.out.print("가입할 아이디 입력 : ");
+				String joinId = sc.next();
+				
+				int result = udao.idCheck(joinId);
+				
+				if(result == 0 ) {
+					System.out.println("사용 가능한 ID입니다.");
+				}else {
+					System.out.println("중복된 ID입니다.");
+					continue;
+				}
+				System.out.print("가입할 비밀번호 입력 : ");
+				String joinPw = sc.next();
+
+				UserDTO dto = new UserDTO();
+				dto.setId(joinId);
+				dto.setPw(joinPw);
+			
+				int cnt = udao.join(dto);
 			}else if (choice==3) {
 				//랭킹보기
 			}else if(choice==4) {
