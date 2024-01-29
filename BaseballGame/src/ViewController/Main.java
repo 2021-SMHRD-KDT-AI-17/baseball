@@ -37,9 +37,29 @@ public class Main {
 				dto.setPw(pw);
 
 				UserDTO result = udao.login(dto);
-				//로그인 됬다고 가정
-				String[] entry=beforeGame(bdto);
-				playGame(entry, bdto.getClub(), true);
+				if(result==null) {
+					System.out.println("로그인 실패");
+					continue;
+				}
+				//로그인성공
+				System.out.println("[1]게임시작 [2]내기록 [3]회원탈퇴 [4]로그아웃");
+				choice=input_I();
+				if(choice==1) {
+					String[] entry=beforeGame(bdto);
+					playGame(entry, bdto.getClub(), true);	
+				}else if(choice==2) {
+					//내기록
+					//baseballDTO사용
+				}else if(choice==3) {
+					//회원탈퇴
+					//baseball tbable에서 정보 모두 삭제후 (FK)
+					//USER_INFO table에서 정보 삭제(PK)
+				}else if(choice==4) {
+					System.out.println("로그아웃");
+					continue;
+				}else {
+					System.out.println("1~4를 입력해주세요");
+				}
 			}else if(choice==2) {
 				//회원가입
 				System.out.print("가입할 아이디 입력 : ");
@@ -69,6 +89,7 @@ public class Main {
 				break;
 			}else {
 				//예외처리
+				System.out.println("1~4를 입력해주세요");
 			}
 		}
 	}
