@@ -92,8 +92,7 @@ public class Main {
 						if(yes == 1) {
 							BaseballDAO bdao = new BaseballDAO();
 							int cnt = bdao.delete(id);
-							cnt = 1;
-								System.out.println("회원삭제 성공!");
+							if(cnt == 1)System.out.println("회원삭제 성공!");
 						}
 						else {
 							System.out.println("회원탈퇴 실패...");
