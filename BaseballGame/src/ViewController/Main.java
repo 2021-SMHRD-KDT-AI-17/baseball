@@ -107,8 +107,12 @@ public class Main {
 				}
 			}else if(choice==2) {
 				//회원가입
-				System.out.print("가입할 아이디 입력 : ");
-				String joinId = sc.next();
+				String joinId="";
+				while(true) {
+					System.out.print("가입할 아이디 입력(3자이상) : ");
+					joinId = sc.next();
+					if(joinId.length()>2)break;
+				}
 				
 				int result = udao.idCheck(joinId);
 				
