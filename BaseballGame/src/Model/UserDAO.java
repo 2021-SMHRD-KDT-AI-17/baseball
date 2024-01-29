@@ -61,13 +61,7 @@ public class UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				if (rs != null) rs.close();
-				if (psmt != null) psmt.close();
-				if (conn != null) conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			close();
 		}
 		return result;
 	}

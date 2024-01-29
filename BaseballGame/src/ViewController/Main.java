@@ -148,10 +148,10 @@ public class Main {
 				BaseballDAO bdao = new BaseballDAO();
 				// 랭킹보기
 				ArrayList<BaseballDTO> list = bdao.rank();
-				System.out.println("아이디\t\t구단\t\t점수");
+				System.out.println("아이디\t\t구단\t점수");
 				for (int i = 0; i < list.size(); i++) {
 					System.out.println(
-							list.get(i).getId() + "\t" + list.get(i).getClub() + "\t" + list.get(i).getScore());
+							list.get(i).getId() + "\t" + list.get(i).getClub() + "\t\t" + list.get(i).getScore());
 				}
 			} else if (choice == 4) {
 				// 게임종료
@@ -418,7 +418,7 @@ public class Main {
 			if (rdComment % 2 == 0) {
 				c = "경기장의 열기가 절정에 이릅니다 " + club + "의 마지막 공격";
 				po.commentator(c, true);
-				c = "%점차의 명승부.. 4번타자 " + pName + ", 마운드에 오릅니다";
+				c = "%점차의 명승부.. 4번타자 " + pName + ", 타석에 오릅니다";
 				po.commentator(c, true);
 				c = "이번에도 보여주나요? " + pName + "선수 ";
 				po.commentator(c, false);
