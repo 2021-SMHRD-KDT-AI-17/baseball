@@ -82,10 +82,10 @@ public class Main {
 			
 				int cnt = udao.join(dto);
 			}else if (choice==3) {
-				BaseballDTO bdto = new BaseballDTO();
+				BaseballDAO bdao = new BaseballDAO();
 				//랭킹보기
 				
-				ArrayList<BaseballDTO>list = bdto.rank();
+				ArrayList<BaseballDTO>list = bdao.rank();
 				
 				System.out.println("아이디\t구단\t점수");
 				for (int i = 0; i < list.size(); i++) {

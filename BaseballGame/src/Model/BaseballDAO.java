@@ -68,26 +68,31 @@ public class BaseballDAO {
 
 	 
 	 //========게임기록저장
-public void rank(){
+public ArrayList<BaseballDTO> rank(){
 		
 		ArrayList<BaseballDTO> list = new ArrayList<BaseballDTO>();
 		
 		try {
 			getConn();
 			
-			 String sql = "select id, club , score from (select id, club ,  MAX(score) as score "
-		               +"from play Group By id Order By score DESC) where rownum <= 10";
+//			 String sql = "select id, club, 점수 from (select id,club, MAX(score) as 점수 "
+//		               +"from baseball Group By id Order By score DESC) where rownum <= 10";
+			 String sql = "select rownum, id, club, score"
+			 		+ " from ("
+			 		+ " select id, club, score"
+			 		+ " from baseball"
+			 		+ " Order By score DESC)"
+			 		+ " where rownum <= 5";
 			 
 			  psmt = conn.prepareStatement(sql);
-		         
 		         rs = psmt.executeQuery();
 		         
 		         while(rs.next()) {
 		             
 		            BaseballDTO dto = new BaseballDTO();
-		             dto.setId(rs.getString(1));
-		             dto.setClub(rs.getString(2));
-		             dto.setScore(rs.getInt(3));
+		             dto.setId(rs.getString("id"));
+		             dto.setClub(rs.getString("club"));
+		             dto.setScore(rs.getInt("score"));
 		             
 		             list.add(dto);
 		             
@@ -100,6 +105,7 @@ public void rank(){
 											
 				
 		}
+		return list;
 		}
 }
 
