@@ -45,7 +45,7 @@ public class Main {
 				}
 				// 로그인성공
 				while (true) {
-					String masterId = "test1";
+					String masterId = "GM";
 					boolean isMaster = result.getId().equals(masterId) ? true : false;
 					if (isMaster) {
 						System.out.println("[1]게임시작 [2]내기록 [3]회원확인 [4]로그아웃");

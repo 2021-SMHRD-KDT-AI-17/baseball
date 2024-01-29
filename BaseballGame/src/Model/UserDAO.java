@@ -18,11 +18,11 @@ public class UserDAO {
 			String user="campus_23K_AI17_p1_2";		
 			String password="smhrd2"; 
 			conn = DriverManager.getConnection(url,user,password);
-			if(conn!=null) {
-				System.out.println("DB연결 성공");
-			}else {
-				System.out.println("DB연결 실패");						
-			}
+//			if(conn!=null) {
+//				System.out.println("DB연결 성공");
+//			}else {
+//				System.out.println("DB연결 실패");						
+//			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -39,7 +39,6 @@ public class UserDAO {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("DB연결종료");
 	}
 	//=====연결해제=====
 	
