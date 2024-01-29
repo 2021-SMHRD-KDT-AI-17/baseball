@@ -49,7 +49,8 @@ public class Main {
 					String masterId = "GM";
 					boolean isMaster = result.getId().equals(masterId) ? true : false;
 					if (isMaster) {
-						System.out.println("[1]게임시작 [2]내기록 [3]회원확인 [4]로그아웃");
+						System.out.println("관리자 로그인");
+						System.out.println("[1]게임시작 [2]회원최근기록 [3]회원확인 [4]로그아웃");
 					} else {
 						System.out.println("[1]게임시작 [2]내기록 [3]회원탈퇴 [4]로그아웃");
 					}
@@ -58,11 +59,27 @@ public class Main {
 						//게임시작
 						String[] entry = beforeGame(bdto, isMaster);
 						int score=playGame(entry, bdto.getClub(), isMaster);
-						bdto.setScore(score);
-						bdto.setId(result.getId());
+						if(!isMaster) {
+							bdto.setScore(score);
+							bdto.setId(result.getId());
+							BaseballDAO bdao = new BaseballDAO();
+							int cnt=bdao.save(bdto);
+							if(cnt>0)System.out.println("기록 저장 성공!!!");						
+						}
+						else
+							System.out.println("관리자 계정은 기록을 남길 수 없습니다.");
+					}else if (choice == 2 && isMaster) {
+						// 마스터 아이디로 회원기록을 확인할 때
 						BaseballDAO bdao = new BaseballDAO();
-						int cnt=bdao.save(bdto);
-						if(cnt>0)System.out.println("기록 저장 성공!!!");
+						ArrayList<BaseballDTO> list = bdao.history();
+						if (list.size() == 0) {
+							System.out.println("기록이 없습니다");
+						} else {
+							System.out.println("ID  /  SCORE  /  DATE(ID당 가장 최근 게임)");
+							for (int i = 0; i < list.size(); i++) {
+								System.out.println(	list.get(i).getId()+"\t"+list.get(i).getScore()+"\t"+list.get(i).getIndate());
+							}
+						}
 					} else if (choice == 2) {
 						// 내기록
 						BaseballDAO bdao = new BaseballDAO();
@@ -75,18 +92,19 @@ public class Main {
 										"구단명: " + list.get(i).getClub() + " / 점수: " + list.get(i).getScore() + "점");
 							}
 						}
-
 					} else if (choice == 3 && isMaster) {
 						// 마스터 아이디로 회원을 확인할 때
 						UserDAO udao = new UserDAO();
 						ArrayList<UserDTO> list = udao.idList();
-						System.out.print("가입자 아이디 목록");
-						for (int i = 0; i < list.size(); i++) {
-							System.out.println(list.get(i).getId() + "  ");
-							if (i % 5 == 0)
-								System.out.println();
+						if (list.size() == 0) {
+							System.out.println("기록이 없습니다");
+						} else {
+							System.out.println("ID(최근활동순)");
+							for (int i = 0; i < list.size(); i++) {
+								System.out.println(list.get(i).getId());
+							}
 						}
-					} else if (choice == 3) {
+					}else if (choice == 3) {
 						// 회원탈퇴
 						System.out.println("정말로 탈퇴하시겠습니까? [1]예 [2]아니오");
 						int yes = input_I();
@@ -140,10 +158,14 @@ public class Main {
 				BaseballDAO bdao = new BaseballDAO();
 				// 랭킹보기
 				ArrayList<BaseballDTO> list = bdao.rank();
-				System.out.println("아이디\t구단\t점수");
+				System.out.println("상위 10등");
+				System.out.println("아이디\t구단\t   점수");
 				for (int i = 0; i < list.size(); i++) {
+					String space="";
+					int spaceN=10-list.get(i).getClub().length();
+					for(int j=0;j<spaceN;j++)space+=" ";
 					System.out.println(
-							list.get(i).getId() + "\t" + list.get(i).getClub() + "\t\t" + list.get(i).getScore());
+							list.get(i).getId() + "\t" + list.get(i).getClub() + space + list.get(i).getScore());
 				}
 			} else if (choice == 4) {
 				// 게임종료
@@ -162,9 +184,9 @@ public class Main {
 		// 구단 이름 설정
 		PrintOption po = PrintOption.getPO();
 		if (isMaster) {
-			content = po.specialFont(po.b_WHITE, po.f_BLUE, "관리자계정 확인\n구단명 : 확인드래곤즈");
+			content = po.specialFont(po.b_WHITE, po.f_BLUE, "관리자계정 확인\n구단명 : Master");
 			System.out.println(content);
-			input_S = "확인드래곤즈";
+			input_S = "Master";
 		} else {
 			content = po.specialFont(po.b_WHITE, po.f_BLUE, "구단명을 정해주세요(9자이하)\n>>");
 			while (true) {
@@ -361,7 +383,7 @@ public class Main {
 			case 3:
 				switch (rd.nextInt(3)) {
 				case 0:
-					c = "쭉~~쭉~~~!!!! 담장을 넘습니다!!!!!";
+					c = "!!!!담장을 넘습니다!!!!!";
 					break;
 				case 1:
 					c = "어디까지 가나요?? 홈~~~런!!!!!!";
@@ -425,7 +447,7 @@ public class Main {
 			if (rdComment % 2 == 0) {
 				c = inning + "회$ 원 아웃이지만 절호의 기회가 있는 " + club;
 				po.commentator(c, false);
-				c = "이번에도 보여주나요? " + pName + "선수 ";
+				c = pName + "! 아주 좋은 성적을 보여줬죠";
 				po.commentator(c, true);
 			} else {
 				c = inning + "회$ " + club + "의 공격 돌아옵니다";

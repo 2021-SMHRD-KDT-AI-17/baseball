@@ -160,8 +160,9 @@ public class BaseballDAO {
 
 		try {
 			getConn();
-			String sql = "select rownum, id, club, score" + " from (" + " select id, club, score" + " from baseball"
-					+ " Order By score DESC)" + " where rownum <= 5";
+//			String sql = "select id, club, score" + " from (select id, club, score from baseball"
+//					+ " Order By score DESC)" + " where rownum <= 5";
+			String sql = "select id, club, score from baseball where rownum<=10 and score in(select max(score) from baseball group by id) Order By score DESC";
 
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
@@ -185,5 +186,36 @@ public class BaseballDAO {
 		}
 		return list;
 	}
+	// =====전체순위 출력
+	public ArrayList<BaseballDTO> history() {
 
+		ArrayList<BaseballDTO> list = new ArrayList<BaseballDTO>();
+		try {
+			getConn();
+			String sql = "select id, score,TO_CHAR(INDATE,'MM/DD/HH24:MI') from baseball where rownum<=10 and score in(select max(score) from baseball group by id) Order By indate DESC";
+
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+
+				BaseballDTO dto = new BaseballDTO();
+				dto.setId(rs.getString("Id"));
+				dto.setScore(rs.getInt("score"));
+				dto.setIndate(rs.getString(3));
+
+				list.add(dto);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
+
+	}
+	// =====유저 
 }

@@ -113,12 +113,13 @@ public class UserDAO {
 		ArrayList<UserDTO> list = new ArrayList<UserDTO>();
 		try {
 			getConn();
-			String sql = "select * from Baseball where rownum<=100";
+			String sql = "select * from user_info";
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				UserDTO udto = new UserDTO();
-				udto.setId(rs.getString("Id"));
+				udto.setId(rs.getString("id"));
+				udto.setPw(rs.getString("pw"));
 				list.add(udto);
 			}
 		} catch (SQLException e) {
