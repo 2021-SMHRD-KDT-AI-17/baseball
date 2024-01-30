@@ -55,7 +55,7 @@
 <br>
 
 ## ⚙ 서비스 흐름도
-[![image](https://user-images.githubusercontent.com/25995055/178401048-d6484bda-a2d7-40e1-998b-2bd195cd9f89.png)](https://github.com/2021-SMHRD-KDT-AI-17/baseball/issues/1#issuecomment-1915950776)
+[[![image](https://user-images.githubusercontent.com/25995055/178401048-d6484bda-a2d7-40e1-998b-2bd195cd9f89.png)](https://github.com/2021-SMHRD-KDT-AI-17/baseball/issues/1#issuecomment-1915950776)](https://private-user-images.githubusercontent.com/157410342/300660372-1364e154-1906-450f-a02b-b28793d7d549.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDY1ODIxMzgsIm5iZiI6MTcwNjU4MTgzOCwicGF0aCI6Ii8xNTc0MTAzNDIvMzAwNjYwMzcyLTEzNjRlMTU0LTE5MDYtNDUwZi1hMDJiLWIyODc5M2Q3ZDU0OS5qcGc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwMTMwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDEzMFQwMjMwMzhaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0zMWQwYjRhNWZjNjcyODc1NDAzNjJhNjdjNTlmZjA0ZjUyZmJiNjg3NzVkYTg2YWM5YTg2ZWM2MDM2OGM5OTU3JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.6LW9sVWssXTVs89MNbTTPe_nLk6ljwo987gKA2eO5h8)
 <br>
 
 
