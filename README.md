@@ -79,10 +79,10 @@
     <td align="center"><img src="https://i.pinimg.com/236x/ed/bb/53/edbb53d4f6dd710431c1140551404af9.jpg" width="100" height="100"/></td>
   </tr>
   <tr>
-    <td align="center"><strong>홍O동</strong></td>
-    <td align="center"><strong>홍O동</strong></td>
-    <td align="center"><strong>홍O동</strong></td>
-    <td align="center"><strong>홍O동</strong></td>
+    <td align="center"><strong>서동현</strong></td>
+    <td align="center"><strong>정두연</strong></td>
+    <td align="center"><strong>김동준</strong></td>
+    <td align="center"><strong>김혜린</strong></td>
   
   </tr>
   <tr>
