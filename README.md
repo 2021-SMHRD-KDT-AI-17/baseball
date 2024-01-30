@@ -4,17 +4,17 @@
 
 ## 👀 서비스 소개
 * 서비스명:  숫자 야구 게임
-* 서비스설명: 
+* 서비스설명: 랜덤 세자리 숫자 맞추기
 <br>
 
 ## 📅 프로젝트 기간
-2024.01.26 ~ 2024.01.30 (3일)
+2024.01.26 ~ 2024.01.30
 <br>
 
 ## ⭐ 주요 기능
-* 기능1
-* 기능2
-* 기능3
+* 로그인 / 회원가입 / 랭킹정보 / 게임종료 
+* 게임시작 / 내 기록 확인 / 회원탈퇴 / 로그아웃
+
 
 <br>
 
@@ -86,10 +86,10 @@
   
   </tr>
   <tr>
-    <td align="center"><b>Frontend</b></td>
-    <td align="center"><b>Frontend</b></td>
-    <td align="center"><b>Backend</b></td>
-    <td align="center"><b>Backend</b></td>
+    <td align="center"><b>팀장</b></td>
+    <td align="center"><b>팀원</b></td>
+    <td align="center"><b>팀원</b></td>
+    <td align="center"><b>팀원</b></td>
     
   </tr>
   <tr>
