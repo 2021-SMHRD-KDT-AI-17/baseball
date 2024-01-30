@@ -1,5 +1,6 @@
-# 📎 Java기반 숫자 야구 게임(팀명: dongteam(동팀)
-[![image]()](https://github.com/2021-SMHRD-KDT-AI-17/baseball/issues/1#issue-2106809613)
+# 📎 Java기반 숫자 야구 게임(팀명: dongteam(동팀))
+![readme_main](https://github.com/2021-SMHRD-KDT-AI-17/baseball/assets/157410342/9ec2d845-736d-4c43-8e87-a0f6768df783)
+
 
 ## 👀 서비스 소개
 * 서비스명:  숫자 야구 게임
