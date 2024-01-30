@@ -69,29 +69,7 @@
 <br>
 
 ### 게임 시작
-![KakaoTalk_20240130_111728171](https://github.com/2021-SMHRD-KDT-AI-17/baseball/assets/157410342/8c77b271-9a27-43c4-839f-de7f17e85398)
-
-
-### 내 기록 확인/ 회원탈퇴
-![KakaoTalk_20240130_112339786](https://github.com/2021-SMHRD-KDT-AI-17/baseball/assets/157410342/90225fda-89d8-4d2a-8777-a1da45aedd15)
-![KakaoTalk_20240130_112432594](https://github.com/2021-SMHRD-KDT-AI-17/baseball/assets/157410342/f6021871-02fa-4651-9732-0cfa52b8ffec)
-
-<br>
-
-
-## 👨‍👩‍👦‍👦 팀원 역할
-<table>
-  <tr>
-    <td align="center"><img src="https://item.kakaocdn.net/do/fd49574de6581aa2a91d82ff6adb6c0115b3f4e3c2033bfd702a321ec6eda72c" width="100" height="100"/></td>
-    <td align="center"><img src="https://mb.ntdtv.kr/assets/uploads/2019/01/Screen-Shot-2019-01-08-at-4.31.55-PM-e1546932545978.png" width="100" height="100"/></td>
-    <td align="center"><img src="https://mblogthumb-phinf.pstatic.net/20160127_177/krazymouse_1453865104404DjQIi_PNG/%C4%AB%C4%AB%BF%C0%C7%C1%B7%BB%C1%EE_%B6%F3%C0%CC%BE%F0.png?type=w2" width="100" height="100"/></td>
-    <td align="center"><img src="https://i.pinimg.com/236x/ed/bb/53/edbb53d4f6dd710431c1140551404af9.jpg" width="100" height="100"/></td>
-  </tr>
-  <tr>
-    <td align="center"><strong>서동현</strong></td>
-    <td align="center"><strong>정두연</strong></td>
-    <td align="center"><strong>김동준</strong></td>
-    <td align="center"><strong>김혜린</strong></td>
+![KakaoTalk_20240130_111728171](https://github.com/2021-SMHRD-KDT-AI-17/baseball/assets/1준</strong></td>
   
   </tr>
   <tr>
