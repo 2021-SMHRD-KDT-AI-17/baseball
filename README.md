@@ -55,7 +55,7 @@
 <br>
 
 ## ⚙ 서비스 흐름도
-![image](https://user-images.githubusercontent.com/25995055/178401048-d6484bda-a2d7-40e1-998b-2bd195cd9f89.png)
+[![image](https://user-images.githubusercontent.com/25995055/178401048-d6484bda-a2d7-40e1-998b-2bd195cd9f89.png)](https://github.com/2021-SMHRD-KDT-AI-17/baseball/issues/1#issuecomment-1915950776)
 <br>
 
 
