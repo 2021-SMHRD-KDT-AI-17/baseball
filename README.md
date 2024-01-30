@@ -62,7 +62,8 @@
 ## 🖥 화면 구성
 
 ### 로그인/회원가입
-![image](https://user-images.githubusercontent.com/25995055/178401098-95f15a0e-a2de-415e-83d5-883bb4cb0656.png)
+![KakaoTalk_20240130_111721117](https://github.com/2021-SMHRD-KDT-AI-17/baseball/assets/157410342/27e70021-700d-43f2-a9b0-ba5a69dbe703)
+![KakaoTalk_20240130_112335234](https://github.com/2021-SMHRD-KDT-AI-17/baseball/assets/157410342/d78d65df-1703-4157-a3c7-db27e9dbd40f)
 <br>
 
 ### K-직장인 생성/플레이
