@@ -68,8 +68,9 @@
 
 <br>
 
-### K-직장인 생성/플레이
-![image](https://user-images.githubusercontent.com/25995055/178401098-95f15a0e-a2de-415e-83d5-883bb4cb0656.png)
+### 게임 시작
+![KakaoTalk_20240130_111728171](https://github.com/2021-SMHRD-KDT-AI-17/baseball/assets/157410342/8c77b271-9a27-43c4-839f-de7f17e85398)
+
 <br>
 
 
