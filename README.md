@@ -61,7 +61,7 @@
 
 ## 🖥 화면 구성
 
-### 로그인/회원가입/랭킹정보
+### 로그인 / 회원가입 / 랭킹정보
 ![KakaoTalk_20240130_111721117](https://github.com/2021-SMHRD-KDT-AI-17/baseball/assets/157410342/27e70021-700d-43f2-a9b0-ba5a69dbe703)
 ![KakaoTalk_20240130_112335234](https://github.com/2021-SMHRD-KDT-AI-17/baseball/assets/157410342/d78d65df-1703-4157-a3c7-db27e9dbd40f)
 ![KakaoTalk_20240130_111731196](https://github.com/2021-SMHRD-KDT-AI-17/baseball/assets/157410342/6d3e7e29-e4d6-4909-9740-e99f13f87811)
@@ -70,6 +70,12 @@
 
 ### 게임 시작
 ![KakaoTalk_20240130_111728171](https://github.com/2021-SMHRD-KDT-AI-17/baseball/assets/157410342/8c77b271-9a27-43c4-839f-de7f17e85398)
+
+<br>
+
+### 내 기록 확인 / 회원 탈퇴
+![KakaoTalk_20240130_112339786](https://github.com/2021-SMHRD-KDT-AI-17/baseball/assets/157410342/90225fda-89d8-4d2a-8777-a1da45aedd15)
+![KakaoTalk_20240130_112432594](https://github.com/2021-SMHRD-KDT-AI-17/baseball/assets/157410342/f6021871-02fa-4651-9732-0cfa52b8ffec)
 
 </td>
   </tr>
