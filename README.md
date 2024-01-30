@@ -69,7 +69,9 @@
 <br>
 
 ### 게임 시작
-![KakaoTalk_20240130_111728171](https://github.com/2021-SMHRD-KDT-AI-17/baseball/assets/1준</strong></td>
+![KakaoTalk_20240130_111728171](https://github.com/2021-SMHRD-KDT-AI-17/baseball/assets/157410342/8c77b271-9a27-43c4-839f-de7f17e85398)
+
+</td>
   </tr>
 
   ## 👨‍👩‍👦‍👦 팀원 역할
