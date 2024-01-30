@@ -72,8 +72,9 @@
 ![KakaoTalk_20240130_111728171](https://github.com/2021-SMHRD-KDT-AI-17/baseball/assets/157410342/8c77b271-9a27-43c4-839f-de7f17e85398)
 
 
-### 
+### 내 기록 확인/ 회원탈퇴
 ![KakaoTalk_20240130_112339786](https://github.com/2021-SMHRD-KDT-AI-17/baseball/assets/157410342/90225fda-89d8-4d2a-8777-a1da45aedd15)
+![KakaoTalk_20240130_112432594](https://github.com/2021-SMHRD-KDT-AI-17/baseball/assets/157410342/f6021871-02fa-4651-9732-0cfa52b8ffec)
 
 <br>
 
