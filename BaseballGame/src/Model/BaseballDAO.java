@@ -162,7 +162,7 @@ public class BaseballDAO {
 			getConn();
 //			String sql = "select id, club, score" + " from (select id, club, score from baseball"
 //					+ " Order By score DESC)" + " where rownum <= 5";
-			String sql = "select id, club, score from baseball where rownum<=10 and score in(select max(score) from baseball group by id) Order By score DESC";
+			String sql = "select id, club, score from baseball where score in(select max(score) from baseball group by id) and rownum<=10 Order By score DESC";
 
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();

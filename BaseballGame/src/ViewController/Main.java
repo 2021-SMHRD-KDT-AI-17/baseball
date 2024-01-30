@@ -97,11 +97,11 @@ public class Main {
 						UserDAO udao = new UserDAO();
 						ArrayList<UserDTO> list = udao.idList();
 						if (list.size() == 0) {
-							System.out.println("기록이 없습니다");
+							System.out.println("회원이 없습니다");
 						} else {
-							System.out.println("ID(최근활동순)");
+							System.out.println("idx\tID(최근활동순)");
 							for (int i = 0; i < list.size(); i++) {
-								System.out.println(list.get(i).getId());
+								System.out.println((i+1)+"\t"+list.get(i).getId());
 							}
 						}
 					}else if (choice == 3) {
